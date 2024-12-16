@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Card from '~/components/modules/Card.vue';
 const { pending, data: productInfo, refresh } = useAsyncData('productInfo', async () => {
     const [products, category] = await Promise.all([
         $fetch('https://fakestoreapi.com/products'),
@@ -38,6 +39,9 @@ const { pending, data: productInfo, refresh } = useAsyncData('productInfo', asyn
         <p>{{ product.category }}</p>
         <p>{{ product.image }}</p>
         </div>
+    </div>
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Card v-for="product in productInfo.products" :key="product.id" :product="product" />
     </div>
   </div>
 </template>
