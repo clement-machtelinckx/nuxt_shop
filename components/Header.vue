@@ -2,14 +2,12 @@
   <header class="py-4">
     <nav class="flex justify-between items-center bg-stone-300 min-h-20">
       <ul class="flex gap-4">
-        <!-- Vos liens de navigation -->
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li><NuxtLink to="/profile">Profile</NuxtLink></li>
         <li><NuxtLink to="/Product">Product</NuxtLink></li>
         <li><NuxtLink to="/categoryAll">Category</NuxtLink></li>
         <li><NuxtLink to="/user3">user</NuxtLink></li>
 
-        <!-- Dropdown -->
         <div class="relative inline-block text-left">
           <div>
             <button @click="toggleDropdown" type="button" class="inline-flex w-full justify-center gap-x-1.5 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" :aria-expanded="isDropdownOpen.toString()" aria-haspopup="true">
@@ -21,7 +19,6 @@
           </div>
           <div v-show="isDropdownOpen" @click.away="closeDropdown" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
-              <!-- Vos éléments de menu -->
               <a href="/category/electronics" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Electronics</a>
               <a href="/category/jewelery" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Jewelry</a>
               <a href="/category/menClothing" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Men's clothing</a>
@@ -37,15 +34,12 @@
 <script setup>
 import { ref } from 'vue';
 
-// Variable pour suivre l'état du menu déroulant (ouvert ou fermé)
 const isDropdownOpen = ref(false);
 
-// Fonction pour basculer l'état du menu déroulant
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-// Fonction pour fermer le menu déroulant lors du clic en dehors de celui-ci
 const closeDropdown = () => {
   isDropdownOpen.value = false;
 };

@@ -6,9 +6,7 @@ console.log(products)
 
 <template>
     <div>
-
         <h1>Electronics</h1>
-
       <div v-if="pending">
         Loading ...
       </div>

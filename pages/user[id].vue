@@ -1,28 +1,34 @@
-<script setup>
-// const route = useRoute();
-// console.log(route);
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
 
-fetch('https://fakestoreapi.com/products',{
-            method:"POST",
-            body:JSON.stringify(
-                {
-                    title: 'test product',
-                    price: 13.5,
-                    description: 'lorem ipsum set',
-                    image: 'https://i.pravatar.cc',
-                    category: 'electronic'
-                }
-            )
-        })
-            .then(res=>res.json())
-            .then(json=>console.log(json))
+const route = useRoute();
+
+const { data: users, pending, error } = await useFetch('/api/users');
+
+const user = computed(() => {
+  return users.value?.find((u) => u.id === parseInt(route.params.id));
+});
 </script>
 
 <template>
-    <div>
-        <h1>hello user</h1>
-        user id : {{ $route.params.id }}
-        <p>{{ json }}</p>
-
+  <div class="">
+    <h1>Hello User</h1>
+    <div v-if="pending" class="text-center">
+      Loading...
     </div>
+    <div v-else-if="error" class="text-center text-red-500">
+      Failed to load user data. Please try again later.
+    </div>
+    <div v-else-if="!user">
+      <p>User not found.</p>
+    </div>
+    <div v-else>
+      <h2>User ID: {{ user.id }}</h2>
+      <p>Name: {{ user.name.firstname }} {{ user.name.lastname }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Username: {{ user.username }}</p>
+      <p>Phone: {{ user.phone }}</p>
+      <p>Address: {{ user.address.street }}, {{ user.address.city }}</p>
+    </div>
+  </div>
 </template>

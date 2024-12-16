@@ -1,6 +1,22 @@
 <script setup lang="ts">
-const { data: products } = await useFetch('https://fakestoreapi.com/products')
-console.log(products);
+import Card from '~/components/modules/Card.vue';
+const { data: products, pending, error } = await useFetch('https://fakestoreapi.com/products')
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string;
+  type: Object,
+  required: true,
+  rating: {
+    rate: number;
+    count: number;
+  };
+}
+
 const num1 = useRandomMath(20);
 const num2 = useRandomMath(20);
 const num3 = useRandomMath(20);
@@ -32,44 +48,7 @@ const num3 = useRandomMath(20);
           <button><NuxtLink :to="`/detail_product${products[num1].id}`">See more</NuxtLink></button>
         </div>
     </div>
-    <div>
-      <div class="flex-1 flex items-start">
-          <div class="w-40">
-            <img :src="products[num2].image" :alt="products[num2].title" class="img_product object-cover" />
-          </div>
-          <div class="flex-1 p-4">
-            <h3 class="text-lg font-semibold mb-2">{{ products[num2].title }}</h3>
-            <h2 class="text-gray-700">{{ products[num2].category }}</h2>
-            <p class="text-gray-700">{{ useTruncable(products[num2].description, 100) }}</p>
-
-            <p class="text-xl font-bold mt-2">{{ products[num2].price }} $</p>
-            <p>rank {{ products[num2].rating.rate }} <iconsStar /> by {{ products[num2].rating.count }} Users</p>
-          </div>
-        </div>
-        <div class="mt-auto flex justify-end">
-          <button><NuxtLink :to="`/detail_product${products[num2].id}`">See more</NuxtLink></button>
-        </div>
-
-    </div>
-    <div>
-      <div class="flex-1 flex items-start">
-          <div class="w-40">
-            <img :src="products[num3].image" :alt="products[num3].title" class="img_product object-cover" />
-          </div>
-          <div class="flex-1 p-4">
-            <h3 class="text-lg font-semibold mb-2">{{ products[num3].title }}</h3>
-            <h2 class="text-gray-700">{{ products[num3].category }}</h2>
-            <p class="text-gray-700">{{ useTruncable(products[num3].description, 100) }}</p>
-
-            <p class="text-xl font-bold mt-2">{{ products[num3].price }} $</p>
-            <p>rank {{ products[num3].rating.rate }} <iconsStar /> by {{ products[num3].rating.count }} Users</p>
-          </div>
-        </div>
-        <div class="mt-auto flex justify-end">
-          <button><NuxtLink :to="`/detail_product${products[num3].id}`">See more</NuxtLink></button>
-        </div>
-    </div>
-
+    <!-- <Card v-for="product in products" :key="product.id" :product="product" /> -->
   </div>
 
   </template>
