@@ -24,7 +24,7 @@ console.log(products)
               <!-- <th scope="col">category</th> -->
               <th scope="col">rating</th>
               <th scope="col">avis</th>
-              <!-- <th scope="col">image_url</th> -->
+              <th scope="col">infos</th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +36,7 @@ console.log(products)
               <!-- <td class="border border-slate-300">{{ product.category }}</td> -->
               <td class="border border-slate-300">{{ product.rating.rate }}/5 </td>
               <td class="border border-slate-300">{{ product.rating.count }} </td>
-              <!-- <td class="border border-slate-300 "><img :src="product.image" alt="Product Image"></td> -->
+              <td class="border border-slate-300"><button><NuxtLink :to="`/detail_product${product.id}`">See more</NuxtLink></button></td>
             </tr>
           </tbody>
         </table>

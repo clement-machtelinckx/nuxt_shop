@@ -1,12 +1,7 @@
-<script setup>
-
+<script setup lang="ts">
+const { data } = await useFetch('/api/hello')
 </script>
 
 <template>
-    
-    <h1 class="">
-    Hello profile!
-  </h1>
-
-
+  <pre>{{ data.hello }}</pre>
 </template>
