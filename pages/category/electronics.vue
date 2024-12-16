@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Card from '~/components/modules/Card.vue';
 const { data: products } = await useFetch('https://fakestoreapi.com/products/category/electronics')
 console.log(products)
 </script>
